@@ -9,7 +9,7 @@ ADD conf/tracker.conf /etc/fdfs/
 ADD fastdfs.sh /home/
 ADD conf/nginx.conf /etc/fdfs/
 ADD conf/mod_fastdfs.conf /etc/fdfs/
-ADD nginx-1.17.10.tar.gz /usr/local/src/
+ADD nginx-1.17.10.tar.gz /usr/local/src/nginx-1.17.10.tar.gz
 
 # run
 RUN yum install git gcc gcc-c++ make automake autoconf libtool pcre pcre-devel zlib zlib-devel openssl-devel wget vim -y \
