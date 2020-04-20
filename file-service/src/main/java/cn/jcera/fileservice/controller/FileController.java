@@ -1,20 +1,47 @@
 package cn.jcera.fileservice.controller;
 
 import cn.jcera.fileservice.core.version.ApiVersion;
+import cn.jcera.fileservice.util.FileDfsUtil;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
+import java.util.Optional;
 
 @RestController
 @ApiVersion(1)
 public class FileController {
 
-    @ApiOperation(value = "接口的功能介绍",notes = "提示接口使用者注意事项",httpMethod = "GET")
-    @ApiImplicitParam(dataType = "string",name = "name",value = "姓名",required = true)
-    @RequestMapping(value = "/demo")
-    public String index(String name) {
+    @Resource
+    private FileDfsUtil fileDfsUtil;
 
-        return "hello "+ name;
+    @ApiOperation(value = "上传文件",notes = "FastDFS文件上传")
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    public ResponseEntity<String> upload(MultipartFile file) throws Exception {
+        String result ;
+        String path = fileDfsUtil.upload(file) ;
+        if (!StringUtils.isEmpty(path)){
+            result = path ;
+        } else {
+            result = "上传失败" ;
+        }
+        return ResponseEntity.ok(result);
+    }
+
+    @ApiOperation(value = "通过文件路径删除文件",notes = "FastDFS文件删除")
+    @RequestMapping(value = "/deleteByPath", method = RequestMethod.DELETE)
+    public ResponseEntity deleteByPath (String path){
+        if (StringUtils.isEmpty(path)) {
+            return ResponseEntity.ok("未指定path");
+        }
+        fileDfsUtil.deleteFile(path);
+        return ResponseEntity.ok("SUCCESS") ;
     }
 }
