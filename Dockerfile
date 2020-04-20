@@ -9,7 +9,7 @@ ADD conf/tracker.conf /etc/fdfs/
 ADD fastdfs.sh /home/
 ADD conf/nginx.conf /etc/fdfs/
 ADD conf/mod_fastdfs.conf /etc/fdfs/
-ADD nginx-1.17.10.tar.gz /usr/local/src/nginx-1.17.10.tar.gz
+ADD nginx-1.17.10.tar.gz /usr/local/src/
 
 # run
 RUN yum install git gcc gcc-c++ make automake autoconf libtool pcre pcre-devel zlib zlib-devel openssl-devel wget vim -y \
@@ -17,8 +17,8 @@ RUN yum install git gcc gcc-c++ make automake autoconf libtool pcre pcre-devel z
   &&    git clone https://github.com/happyfish100/libfastcommon.git --depth 1        \
   &&    git clone https://github.com/happyfish100/fastdfs.git --depth 1    \
   &&    git clone https://github.com/happyfish100/fastdfs-nginx-module.git --depth 1   \
-  &&    pwd && ls    \
-  &&    tar -zxvf nginx-1.17.10.tar.gz    \
+  &&    pwd && ls -l   \
+  &&    tar -zxvf nginx-1.17.10  \
   &&    mkdir /home/dfs   \
   &&    cd /usr/local/src/  \
   &&    cd libfastcommon/   \
