@@ -34,5 +34,5 @@ RUN yum install git gcc gcc-c++ make automake autoconf libtool pcre pcre-devel z
 # export config
 VOLUME /etc/fdfs
 
-EXPOSE 32122 33000 8888 80
+EXPOSE 32122 32123 8888 80
 ENTRYPOINT ["/home/fastdfs.sh"]

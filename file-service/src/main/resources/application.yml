@@ -13,7 +13,7 @@ fdfs:
   thumb-image:
     width: 150
     height: 150
-  tracker-list: 106.13.10.5:31043
+  tracker-list: 106.13.10.5:32122
 
 # 文件上传配置
 spring:
