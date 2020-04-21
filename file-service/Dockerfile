@@ -2,7 +2,7 @@ FROM java:8
 
 VOLUME /app
 
-ADD file-service-0.0.1-SNAPSHOT.jar app.jar
+ADD ./target/file-service-0.0.1-SNAPSHOT.jar app.jar
 
 RUN bash -c 'touch /app.jar'
 
