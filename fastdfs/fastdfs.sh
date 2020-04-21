@@ -1,7 +1,7 @@
 #!/bin/bash
 
 new_val=$FASTDFS_IPADDR
-old="com.ikingtech.ch116221"
+old="cn.jcera.fileservice"
 
 sed -i "s/$old/$new_val/g" /etc/fdfs/client.conf
 sed -i "s/$old/$new_val/g" /etc/fdfs/storage.conf
@@ -21,6 +21,6 @@ echo "start storage"
 /etc/init.d/fdfs_storaged start
 
 echo "start nginx"
-/usr/local/nginx/sbin/nginx 
+/usr/local/nginx/sbin/nginx
 
 tail -f  /dev/null

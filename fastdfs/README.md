@@ -9,5 +9,5 @@ Dockerfile 所需要的一些配置文件
 需要注意的是 你需要在运行容器的时候制定宿主机的ip 用参数 FASTDFS_IPADDR 来指定
 
 ```
-docker run -d -e FASTDFS_IPADDR=192.168.1.234 -p 8888:8888 -p 22122:22122 -p 23000:23000 -p 8011:80 --name test-fast 镜像id/镜像名称
+docker run -d -e FASTDFS_IPADDR=192.168.1.234 -p 8888:8888 -p 32122:32122 -p 33000:33000 -p 8011:80 --name test-fast 镜像id/镜像名称
 ```
