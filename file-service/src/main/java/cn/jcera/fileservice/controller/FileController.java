@@ -28,6 +28,7 @@ public class FileController {
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public ResultBean<String> upload(MultipartFile file) throws Exception {
         String result ;
+        System.out.println();
         String path = fileDfsUtil.upload(file) ;
         if (!StringUtils.isEmpty(path)){
             result = path ;
@@ -40,9 +41,6 @@ public class FileController {
     @ApiOperation(value = "通过文件路径删除文件",notes = "FastDFS文件删除")
     @RequestMapping(value = "/deleteByPath", method = RequestMethod.DELETE)
     public ResultBean<String> deleteByPath (String path){
-        if (StringUtils.isEmpty(path)) {
-            return new ResultBean<>(ExceptionEnum.ARGUMENTS_INVALID, "未指定参数path");
-        }
         fileDfsUtil.deleteFile(path);
         return ResultBean.success("SUCCESS") ;
     }
