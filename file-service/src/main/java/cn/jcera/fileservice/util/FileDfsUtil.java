@@ -25,7 +25,8 @@ public class FileDfsUtil {
         StorePath storePath = this.storageClient.uploadImageAndCrtThumbImage(
                 multipartFile.getInputStream(),
                 multipartFile.getSize(),originalFilename , null);
-        return storePath.getFullPath() ;
+        LOGGER.info("文件上传成功，FullPath：[{}]", storePath.getFullPath());
+        return storePath.getFullPath();
     }
 
     public void deleteFile(String fileUrl) {
