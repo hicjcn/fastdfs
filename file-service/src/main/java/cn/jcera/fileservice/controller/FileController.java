@@ -1,5 +1,7 @@
 package cn.jcera.fileservice.controller;
 
+import cn.jcera.fileservice.core.entity.ResultBean;
+import cn.jcera.fileservice.core.exception.ExceptionEnum;
 import cn.jcera.fileservice.core.version.ApiVersion;
 import cn.jcera.fileservice.util.FileDfsUtil;
 import io.swagger.annotations.ApiImplicitParam;
@@ -24,7 +26,7 @@ public class FileController {
 
     @ApiOperation(value = "上传文件",notes = "FastDFS文件上传")
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    public ResponseEntity<String> upload(MultipartFile file) throws Exception {
+    public ResultBean<String> upload(MultipartFile file) throws Exception {
         String result ;
         String path = fileDfsUtil.upload(file) ;
         if (!StringUtils.isEmpty(path)){
@@ -32,16 +34,16 @@ public class FileController {
         } else {
             result = "上传失败" ;
         }
-        return ResponseEntity.ok(result);
+        return ResultBean.success(result);
     }
 
     @ApiOperation(value = "通过文件路径删除文件",notes = "FastDFS文件删除")
     @RequestMapping(value = "/deleteByPath", method = RequestMethod.DELETE)
-    public ResponseEntity deleteByPath (String path){
+    public ResultBean<String> deleteByPath (String path){
         if (StringUtils.isEmpty(path)) {
-            return ResponseEntity.ok("未指定path");
+            return new ResultBean<>(ExceptionEnum.ARGUMENTS_INVALID, "未指定参数path");
         }
         fileDfsUtil.deleteFile(path);
-        return ResponseEntity.ok("SUCCESS") ;
+        return ResultBean.success("SUCCESS") ;
     }
 }
