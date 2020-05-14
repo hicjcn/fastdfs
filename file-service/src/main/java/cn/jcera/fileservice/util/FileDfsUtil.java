@@ -22,7 +22,7 @@ public class FileDfsUtil {
         String originalFilename = multipartFile.getOriginalFilename().
                 substring(multipartFile.getOriginalFilename().
                         lastIndexOf(".") + 1);
-        StorePath storePath = this.storageClient.uploadImageAndCrtThumbImage(
+        StorePath storePath = this.storageClient.uploadFile(
                 multipartFile.getInputStream(),
                 multipartFile.getSize(),originalFilename , null);
         LOGGER.info("文件上传成功，FullPath：[{}]", storePath.getFullPath());

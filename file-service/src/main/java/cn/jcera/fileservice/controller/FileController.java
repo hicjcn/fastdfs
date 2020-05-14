@@ -27,8 +27,10 @@ public class FileController {
     @ApiOperation(value = "上传文件",notes = "FastDFS文件上传")
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public ResultBean<String> upload(MultipartFile file) throws Exception {
-        String result ;
-        System.out.println();
+        if (null == file || file.isEmpty()) {
+            return new ResultBean<>(ExceptionEnum.ARGUMENTS_INVALID, "未上传文件");
+        }
+        String result;
         String path = fileDfsUtil.upload(file) ;
         if (!StringUtils.isEmpty(path)){
             result = path ;
