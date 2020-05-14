@@ -1,0 +1,24 @@
+server:
+  port: 8000
+
+# FastDFS 配置
+fdfs:
+  # 链接超时
+  connect-timeout: 60
+  # 读取时间
+  so-timeout: 60
+  # 生成缩略图参数
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list: fastdfs.fastdfs:32122
+
+# 文件上传配置
+spring:
+  application:
+    name: file-service
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 20MB
